@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es6",
+    "outDir": "./",
+    "sourceMap": true,
+    "strict": true,
+    "typeRoots": ["node_modules/@types", "index.d.ts"]
+  },
+  "exclude": ["node_modules"],
+  "compileOnSave": false
+}
