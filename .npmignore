@@ -1,0 +1,9 @@
+.idea
+.eslintignore
+.eslintrc.js
+.prettierrc.js
+babel.config.js
+demo.html
+index.test.ts
+rollup.config.js
+tsconfig.json

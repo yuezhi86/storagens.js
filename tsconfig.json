@@ -5,7 +5,7 @@
     "outDir": "./",
     "sourceMap": true,
     "strict": true,
-    "typeRoots": ["node_modules/@types", "index.d.ts"]
+    "typeRoots": ["node_modules/@types", "types.ts"]
   },
   "exclude": ["node_modules"],
   "compileOnSave": false

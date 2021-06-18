@@ -1,12 +1,21 @@
-# storage-ns.js
-localStorage 和 sessionStorage 命名空间版本
+# StorageNamespace
 
-## 用法示例
+带有命名空间的 localStorage、sessionStorage
+
+## 安装
+
+```bash
+npm install storage-ns
+# or
+yarn add storage-ns
+```
+
+## 用法
 
 ### 创建实例
 
 ```js
-import { LocalStorage, SessionStorage } from "storage";
+import { LocalStorage, SessionStorage } from "storage-ns";
 
 // 不带命名空间的localStorage
 const localStorage = new LocalStorage();
