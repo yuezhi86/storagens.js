@@ -1,0 +1,50 @@
+{
+  "name": "storage-ns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.min.js",
+  "module": "index.esm.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest",
+    "lintfix": "eslint --fix --ext .js,.ts --ignore-path .eslintignore ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/*.{js,ts}": [
+      "lintfix",
+      "git add"
+    ]
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "git@codeup.aliyun.com:5e97f07af89c9700014a4ee9/framework/storage-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@babel/eslint-parser": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
+    "@babel/preset-typescript": "^7.14.5",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.1",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0",
+    "rollup": "^2.51.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.3.2"
+  }
+}

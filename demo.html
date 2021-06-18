@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Demo</title>
+  </head>
+  <body>
+    <script src="./index.min.js"></script>
+    <script>
+      const { LocalStorage, SessionStorage } = storagejs;
+      const userLocalStorage = new LocalStorage("user");
+
+      console.log("userLocalStorage.set('name', 'Bean') ok!");
+      userLocalStorage.set("name", "Bean");
+
+      console.log(
+        "userLocalStorage.set('token', 'A8515509F42D80553AE2495DCDBFE9A7', Date.now() + 864e5) ok!"
+      );
+      userLocalStorage.set(
+        "token",
+        "A8515509F42D80553AE2495DCDBFE9A7",
+        Date.now() + 864e5
+      );
+
+      console.log(
+        "userLocalStorage.get('name') =>",
+        userLocalStorage.get("name")
+      );
+
+      console.log(
+        "userLocalStorage.getValue('name') =>",
+        userLocalStorage.getValue("name")
+      );
+
+      console.log("userLocalStorage.all() =>", userLocalStorage.all());
+      console.log(
+        "userLocalStorage.allValue() =>",
+        userLocalStorage.allValue()
+      );
+      console.log(
+        "userLocalStorage.has('name') =>",
+        userLocalStorage.has("name")
+      );
+      console.log(
+        "userLocalStorage.has('age') =>",
+        userLocalStorage.has("age")
+      );
+
+      console.log(
+        "userLocalStorage.expired('token') =>",
+        userLocalStorage.expired("token")
+      );
+
+      console.log(
+        "userLocalStorage.clearExpired() =>",
+        userLocalStorage.clearExpired()
+      );
+
+      console.log("userLocalStorage.delete('name')");
+      userLocalStorage.delete("name");
+
+      console.log("userLocalStorage.clear()");
+      userLocalStorage.clear();
+    </script>
+  </body>
+</html>
