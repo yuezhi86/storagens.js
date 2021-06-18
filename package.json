@@ -2,9 +2,8 @@
   "name": "storage-ns",
   "version": "1.0.0",
   "description": "带有命名空间的 localStorage、sessionStorage",
-  "main": "index.min.js",
-  "module": "index.esm.js",
-  "type": "commonjs",
+  "main": "dist/index.min.js",
+  "module": "dist/index.esm.js",
   "types": "index.d.ts",
   "scripts": {
     "build": "rollup -c && yarn build:umd && yarn build:cjs",
