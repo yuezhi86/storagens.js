@@ -1,12 +1,14 @@
 {
   "name": "storage-ns",
   "version": "1.0.0",
-  "description": "localStorage 和 sessionStorage 命名空间版本",
+  "description": "带有命名空间的 localStorage、sessionStorage",
   "main": "index.min.js",
   "module": "index.esm.js",
+  "type": "commonjs",
   "types": "index.d.ts",
   "scripts": {
-    "build:esm": "mode=esm rollup -c",
+    "build": "rollup -c && yarn build:umd && yarn build:cjs",
+    "build:cjs": "mode=cjs rollup -c",
     "build:umd": "mode=umd rollup -c",
     "test": "jest",
     "lintfix": "eslint --fix --ext .js,.ts --ignore-path .eslintignore ."
@@ -25,7 +27,7 @@
   "homepage": "https://github.com/yuezhi86/storage-ns.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:yuezhi86/storage-ns.js.git"
+    "url": "git@github.com:yuezhi86/storage-ns.js"
   },
   "keywords": [
     "storage",

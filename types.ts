@@ -26,6 +26,6 @@ export interface StorageInterface {
   has(key: Label): boolean;
   delete(key: Label): void;
   clear(): void;
-  expired(key: Label): boolean | null;
+  expired(key: Label): boolean;
   clearExpired(): number;
 }

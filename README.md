@@ -1,7 +1,9 @@
-# storage-ns
+# StorageNamespace
+
 带有命名空间的 localStorage、sessionStorage
 
 ## 安装
+
 ```bash
 npm install storage-ns
 # or

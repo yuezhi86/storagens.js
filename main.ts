@@ -7,7 +7,7 @@ import {
   Values,
 } from "./types";
 
-export default class BaseStorage implements StorageInterface {
+class BaseStorage implements StorageInterface {
   apiName: StorageName;
   namespace: Label;
 
@@ -76,9 +76,9 @@ export default class BaseStorage implements StorageInterface {
     });
   };
 
-  expired = (key: Label): boolean | null => {
+  expired = (key: Label): boolean => {
     const value = this.get(key);
-    if (value === null) return null;
+    if (value === null) return false;
     return value.expireTime > 0 && Date.now() > value.expireTime;
   };
 

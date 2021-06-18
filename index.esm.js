@@ -1,1 +1,101 @@
-class e{constructor(e,t=""){this.apiName=e,this.namespace=t}set=(e,t,s=0)=>{window[this.apiName].setItem(this._getKey(e),JSON.stringify({value:t,updateTime:Date.now(),expireTime:s}))};all=()=>{const e=window[this.apiName];return Object.keys(e).reduce(((t,s)=>(this._hasKey(s)&&(t[this._delNamespace(s)]=JSON.parse(e[s])),t)),{})};allValue=()=>{const e=this.all(),t={};for(let s in e){if(!Object.prototype.hasOwnProperty.call(e,s))continue;const a=e[s];null!==a&&(t[this._delNamespace(s)]=a.value)}return t};get=e=>JSON.parse(window[this.apiName].getItem(this._getKey(e)));getValue=e=>{const t=this.get(e);return null===t?null:t.value};has=e=>!!this.get(e);delete=e=>{window[this.apiName].removeItem(this._getKey(e))};clear=()=>{Object.keys(this.all()).forEach((e=>{this.delete(e)}))};expired=e=>{const t=this.get(e);return null===t?null:t.expireTime>0&&Date.now()>t.expireTime};clearExpired=()=>{let e=0;const t=this.all();for(let s in t){if(!Object.prototype.hasOwnProperty.call(t,s))continue;const a=t[s];null!==a&&a.expireTime>0&&Date.now()>a.expireTime&&(e++,this.delete(s))}return e};_hasKey=e=>{const t=this.namespace?`^${this.namespace}\\.`:`^${e}$`;return new RegExp(t).test(e)};_getKey=e=>this.namespace?`${this.namespace}.${e}`:`${e}`;_delNamespace=e=>`${e}`.replace(`${this.namespace}.`,"")}class t extends e{constructor(e){super("localStorage",e)}}class s extends e{constructor(e){super("sessionStorage",e)}}export default e;export{t as LocalStorage,s as SessionStorage};
+class BaseStorage {
+  constructor(apiName, namespace = "") {
+    this.apiName = apiName;
+    this.namespace = namespace;
+  }
+
+  set = (key, value, expireTime = 0) => {
+    window[this.apiName].setItem(this._getKey(key), JSON.stringify({
+      value,
+      updateTime: Date.now(),
+      expireTime
+    }));
+  };
+  all = () => {
+    const storageData = window[this.apiName];
+    const keys = Object.keys(storageData);
+    return keys.reduce((values, key) => {
+      if (this._hasKey(key)) {
+        values[this._delNamespace(key)] = JSON.parse(storageData[key]);
+      }
+
+      return values;
+    }, {});
+  };
+  allValue = () => {
+    const all = this.all();
+    const values = {};
+
+    for (let key in all) {
+      if (!Object.prototype.hasOwnProperty.call(all, key)) continue;
+      const item = all[key];
+
+      if (item !== null) {
+        values[this._delNamespace(key)] = item.value;
+      }
+    }
+
+    return values;
+  };
+  get = key => JSON.parse(window[this.apiName].getItem(this._getKey(key)));
+  getValue = key => {
+    const value = this.get(key);
+    if (value === null) return null;
+    return value.value;
+  };
+  has = key => !!this.get(key);
+  delete = key => {
+    window[this.apiName].removeItem(this._getKey(key));
+  };
+  clear = () => {
+    Object.keys(this.all()).forEach(key => {
+      this.delete(key);
+    });
+  };
+  expired = key => {
+    const value = this.get(key);
+    if (value === null) return false;
+    return value.expireTime > 0 && Date.now() > value.expireTime;
+  };
+  clearExpired = () => {
+    let count = 0;
+    const all = this.all();
+
+    for (let key in all) {
+      if (!Object.prototype.hasOwnProperty.call(all, key)) continue;
+      const item = all[key];
+
+      if (item !== null && item.expireTime > 0 && Date.now() > item.expireTime) {
+        count++;
+        this.delete(key);
+      }
+    }
+
+    return count;
+  };
+  _hasKey = key => {
+    const regx = this.namespace ? `^${this.namespace}\\.` : `^${key}$`;
+    return new RegExp(regx).test(key);
+  };
+  _getKey = key => {
+    return this.namespace ? `${this.namespace}.${key}` : `${key}`;
+  };
+  _delNamespace = key => {
+    return `${key}`.replace(`${this.namespace}.`, "");
+  };
+}
+
+class LocalStorage extends BaseStorage {
+  constructor(namespace) {
+    super("localStorage", namespace);
+  }
+
+}
+class SessionStorage extends BaseStorage {
+  constructor(namespace) {
+    super("sessionStorage", namespace);
+  }
+
+}
+
+export { LocalStorage, SessionStorage };
