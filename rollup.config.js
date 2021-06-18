@@ -5,7 +5,7 @@ const config = {
   input: "main.ts",
   output: [
     {
-      file: "index.esm.js",
+      file: "dist/index.esm.js",
       format: "es",
     },
   ],
@@ -20,7 +20,7 @@ const config = {
 if (process.env.mode === "umd") {
   config.output = [
     {
-      file: "index.umd.js",
+      file: "dist/index.umd.js",
       format: "umd",
       name: "storagens",
       plugins: [terser()],
@@ -29,11 +29,11 @@ if (process.env.mode === "umd") {
 } else if (process.env.mode === "cjs") {
   config.output = [
     {
-      file: "index.js",
+      file: "dist/index.js",
       format: "cjs",
     },
     {
-      file: "index.min.js",
+      file: "dist/index.min.js",
       format: "cjs",
       plugins: [terser()],
     },
