@@ -1,3 +1,5 @@
+import BaseStorage, {LocalStorage, SessionStorage} from "./main";
+
 export type Label = string | number;
 export type StorageName = "localStorage" | "sessionStorage";
 export type DataType = {
@@ -29,3 +31,6 @@ export interface StorageInterface {
   expired(key: Label): boolean | null;
   clearExpired(): number;
 }
+
+export default BaseStorage;
+export { LocalStorage, SessionStorage};
