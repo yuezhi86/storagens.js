@@ -1,7 +1,7 @@
 {
-  "name": "storage-ns",
+  "name": "storage-ns.js",
   "version": "1.0.0",
-  "description": "",
+  "description": "localStorage 和 sessionStorage 命名空间版本",
   "main": "index.min.js",
   "module": "index.esm.js",
   "types": "index.d.ts",
@@ -21,13 +21,14 @@
       "git add"
     ]
   },
-  "homepage": "",
+  "homepage": "https://github.com/yuezhi86/storage-ns.js",
   "repository": {
     "type": "git",
-    "url": "git@codeup.aliyun.com:5e97f07af89c9700014a4ee9/framework/storage-js.git"
+    "url": "git@github.com:yuezhi86/storage-ns.js.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": ["storage", "storagejs", "localstorage", "sessionstorage", "localStorage", "sessionStorage"],
+  "author": "yuezhi86",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.14.5",
     "@babel/eslint-parser": "^7.14.5",

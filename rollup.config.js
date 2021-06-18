@@ -12,7 +12,7 @@ export default {
     {
       file: "index.min.js",
       format: "umd",
-      name: "storagejs",
+      name: "storagens",
       plugins: [terser()],
     },
   ],
