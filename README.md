@@ -1,11 +1,11 @@
-# storage-ns.js
-localStorage 和 sessionStorage 命名空间版本
+# storage-ns
+带有命名空间的 localStorage、sessionStorage
 
 ## 安装
 ```bash
-npm install storage-ns.js
+npm install storage-ns
 # or
-yarn add storage-ns.js
+yarn add storage-ns
 ```
 
 ## 用法

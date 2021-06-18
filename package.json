@@ -1,5 +1,5 @@
 {
-  "name": "storage-ns.js",
+  "name": "storage-ns",
   "version": "1.0.0",
   "description": "localStorage 和 sessionStorage 命名空间版本",
   "main": "index.min.js",
