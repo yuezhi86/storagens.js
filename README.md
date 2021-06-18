@@ -3,9 +3,9 @@ localStorage 和 sessionStorage 命名空间版本
 
 ## 安装
 ```bash
-npm install storage-ns
+npm install storage-ns.js
 # or
-yarn add storage-ns
+yarn add storage-ns.js
 ```
 
 ## 用法
