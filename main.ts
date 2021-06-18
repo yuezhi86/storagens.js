@@ -5,7 +5,7 @@ import {
   StorageInterface,
   StorageName,
   Values,
-} from "./index";
+} from "./types";
 
 export default class BaseStorage implements StorageInterface {
   apiName: StorageName;

@@ -6,7 +6,8 @@
   "module": "index.esm.js",
   "types": "index.d.ts",
   "scripts": {
-    "build": "rollup -c",
+    "build:esm": "mode=esm rollup -c",
+    "build:umd": "mode=umd rollup -c",
     "test": "jest",
     "lintfix": "eslint --fix --ext .js,.ts --ignore-path .eslintignore ."
   },
