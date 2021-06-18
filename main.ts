@@ -18,7 +18,7 @@ class BaseStorage implements StorageInterface {
 
   set = (key: Label, value: any, expireTime = 0): void => {
     window[this.apiName].setItem(
-      this._getKey(key),
+      this._getKeyName(key),
       JSON.stringify({
         value,
         updateTime: Date.now(),
@@ -56,7 +56,7 @@ class BaseStorage implements StorageInterface {
   };
 
   get = (key: Label): DataType =>
-    JSON.parse(window[this.apiName].getItem(this._getKey(key)) as string);
+    JSON.parse(window[this.apiName].getItem(this._getKeyName(key)) as string);
 
   getValue = (key: Label): any => {
     const value = this.get(key);
@@ -64,10 +64,10 @@ class BaseStorage implements StorageInterface {
     return value.value;
   };
 
-  has = (key: Label): boolean => !!this.get(key);
+  has = (key: Label): boolean => this._getKeyName(key) in window[this.apiName];
 
   delete = (key: Label): void => {
-    window[this.apiName].removeItem(this._getKey(key));
+    window[this.apiName].removeItem(this._getKeyName(key));
   };
 
   clear = (): void => {
@@ -108,7 +108,7 @@ class BaseStorage implements StorageInterface {
     return new RegExp(regx).test(key);
   };
 
-  _getKey = (key: Label): string => {
+  _getKeyName = (key: Label): string => {
     return this.namespace ? `${this.namespace}.${key}` : `${key}`;
   };
 
