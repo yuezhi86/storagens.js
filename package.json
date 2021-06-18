@@ -26,7 +26,14 @@
     "type": "git",
     "url": "git@github.com:yuezhi86/storage-ns.js.git"
   },
-  "keywords": ["storage", "storagejs", "localstorage", "sessionstorage", "localStorage", "sessionStorage"],
+  "keywords": [
+    "storage",
+    "storagejs",
+    "localstorage",
+    "sessionstorage",
+    "localStorage",
+    "sessionStorage"
+  ],
   "author": "yuezhi86",
   "license": "MIT",
   "devDependencies": {
@@ -47,5 +54,6 @@
     "rollup": "^2.51.1",
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.3.2"
-  }
+  },
+  "dependencies": {}
 }
