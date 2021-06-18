@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { LocalStorage } = require("./index");
+const { LocalStorage } = require("./dist/index");
 
 describe("LocalStorage Test", () => {
   const testLocalStorage = new LocalStorage("testLocalStorage");
