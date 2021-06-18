@@ -5,7 +5,7 @@ class BaseStorage {
   }
 
   set = (key, value, expireTime = 0) => {
-    window[this.apiName].setItem(this._getKey(key), JSON.stringify({
+    window[this.apiName].setItem(this._getKeyName(key), JSON.stringify({
       value,
       updateTime: Date.now(),
       expireTime
@@ -37,15 +37,15 @@ class BaseStorage {
 
     return values;
   };
-  get = key => JSON.parse(window[this.apiName].getItem(this._getKey(key)));
+  get = key => JSON.parse(window[this.apiName].getItem(this._getKeyName(key)));
   getValue = key => {
     const value = this.get(key);
     if (value === null) return null;
     return value.value;
   };
-  has = key => !!this.get(key);
+  has = key => this._getKeyName(key) in window[this.apiName];
   delete = key => {
-    window[this.apiName].removeItem(this._getKey(key));
+    window[this.apiName].removeItem(this._getKeyName(key));
   };
   clear = () => {
     Object.keys(this.all()).forEach(key => {
@@ -77,7 +77,7 @@ class BaseStorage {
     const regx = this.namespace ? `^${this.namespace}\\.` : `^${key}$`;
     return new RegExp(regx).test(key);
   };
-  _getKey = key => {
+  _getKeyName = key => {
     return this.namespace ? `${this.namespace}.${key}` : `${key}`;
   };
   _delNamespace = key => {

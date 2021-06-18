@@ -112,7 +112,7 @@ var BaseStorage = function BaseStorage(apiName) {
   _defineProperty(this, "set", function (key, value) {
     var expireTime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
-    window[_this.apiName].setItem(_this._getKey(key), JSON.stringify({
+    window[_this.apiName].setItem(_this._getKeyName(key), JSON.stringify({
       value: value,
       updateTime: Date.now(),
       expireTime: expireTime
@@ -149,7 +149,7 @@ var BaseStorage = function BaseStorage(apiName) {
   });
 
   _defineProperty(this, "get", function (key) {
-    return JSON.parse(window[_this.apiName].getItem(_this._getKey(key)));
+    return JSON.parse(window[_this.apiName].getItem(_this._getKeyName(key)));
   });
 
   _defineProperty(this, "getValue", function (key) {
@@ -160,11 +160,11 @@ var BaseStorage = function BaseStorage(apiName) {
   });
 
   _defineProperty(this, "has", function (key) {
-    return !!_this.get(key);
+    return _this._getKeyName(key) in window[_this.apiName];
   });
 
   _defineProperty(this, "delete", function (key) {
-    window[_this.apiName].removeItem(_this._getKey(key));
+    window[_this.apiName].removeItem(_this._getKeyName(key));
   });
 
   _defineProperty(this, "clear", function () {
@@ -204,7 +204,7 @@ var BaseStorage = function BaseStorage(apiName) {
     return new RegExp(regx).test(key);
   });
 
-  _defineProperty(this, "_getKey", function (key) {
+  _defineProperty(this, "_getKeyName", function (key) {
     return _this.namespace ? "".concat(_this.namespace, ".").concat(key) : "".concat(key);
   });
 
