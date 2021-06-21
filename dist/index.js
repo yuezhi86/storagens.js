@@ -209,7 +209,8 @@ var BaseStorage = function BaseStorage(apiName) {
   });
 
   _defineProperty(this, "_delNamespace", function (key) {
-    return "".concat(key).replace("".concat(_this.namespace, "."), "");
+    var keyStr = "".concat(key);
+    return _this.namespace ? keyStr.replace(new RegExp("^".concat(_this.namespace, "\\.")), "") : keyStr;
   });
 
   this.apiName = apiName;

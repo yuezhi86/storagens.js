@@ -113,7 +113,10 @@ class BaseStorage implements StorageInterface {
   };
 
   _delNamespace = (key: Label): string => {
-    return `${key}`.replace(`${this.namespace}.`, "");
+    const keyStr = `${key}`;
+    return this.namespace
+      ? keyStr.replace(new RegExp(`^${this.namespace}\\.`), "")
+      : keyStr;
   };
 }
 
