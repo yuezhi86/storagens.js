@@ -1,6 +1,6 @@
 # StorageNamespace
 
-带有命名空间的 localStorage、sessionStorage
+可以设置命名空间的Storage
 
 ## 安装
 

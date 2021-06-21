@@ -1,7 +1,7 @@
 {
   "name": "storage-ns",
-  "version": "1.0.0",
-  "description": "带有命名空间的 localStorage、sessionStorage",
+  "version": "1.0.1",
+  "description": "可以设置命名空间的Storage",
   "main": "dist/index.min.js",
   "module": "dist/index.esm.js",
   "types": "index.d.ts",
