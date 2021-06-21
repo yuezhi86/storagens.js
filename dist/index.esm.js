@@ -81,7 +81,8 @@ class BaseStorage {
     return this.namespace ? `${this.namespace}.${key}` : `${key}`;
   };
   _delNamespace = key => {
-    return `${key}`.replace(`${this.namespace}.`, "");
+    const keyStr = `${key}`;
+    return this.namespace ? keyStr.replace(new RegExp(`^${this.namespace}\\.`), "") : keyStr;
   };
 }
 

@@ -6,18 +6,26 @@ const { LocalStorage } = require("./dist/index");
 
 describe("LocalStorage Test", () => {
   const testLocalStorage = new LocalStorage("testLocalStorage");
+  const localStorage = new LocalStorage();
 
   beforeEach(() => {
     testLocalStorage.clear();
+    localStorage.clear();
   });
 
   it("Set name and token", () => {
     testLocalStorage.set("name", "Bean");
+    localStorage.set("name", "Bean2");
     expect(testLocalStorage.has("name")).toBe(true);
+    expect(localStorage.has("name")).toBe(true);
     expect(testLocalStorage.getValue("name")).toBe("Bean");
     expect(testLocalStorage.get("name")).toMatchObject({ value: "Bean" });
     expect(testLocalStorage.allValue()).toMatchObject({ name: "Bean" });
     expect(testLocalStorage.all()).toMatchObject({ name: { value: "Bean" } });
+    expect(localStorage.all()).toMatchObject({
+      "testLocalStorage.name": { value: "Bean" },
+      name: { value: "Bean2" },
+    });
   });
 
   it("Test expired", () => {

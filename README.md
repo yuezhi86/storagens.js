@@ -1,6 +1,6 @@
 # StorageNamespace
 
-可以设置命名空间的Storage
+可以设置命名空间的 Storage
 
 ## 安装
 
@@ -89,7 +89,7 @@ userLocalStorage.allValue();
 // => {name: "Bean", token: "A8515509F42D80553AE2495DCDBFE9A7"}
 ```
 
-### 指定 key 是否存在
+### 查看指定 key 是否存在
 
 **JS 代码：**
 
@@ -117,7 +117,7 @@ userLocalStorage.clearExpired();
 // => 0
 ```
 
-### 删除指定 key
+### 删除指定 key 及 value
 
 **JS 代码：**
 
@@ -125,7 +125,7 @@ userLocalStorage.clearExpired();
 userLocalStorage.delete("name");
 ```
 
-### 清空全部数据
+### 清空全部数据（只清空改命名空间下的数据）
 
 **JS 代码：**
 
