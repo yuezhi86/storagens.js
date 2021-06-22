@@ -5,9 +5,9 @@
 ## 安装
 
 ```bash
-npm install storage-ns
+npm install storagens
 # or
-yarn add storage-ns
+yarn add storagens
 ```
 
 ## 用法
@@ -15,7 +15,7 @@ yarn add storage-ns
 ### 创建实例
 
 ```js
-import { LocalStorage, SessionStorage } from "storage-ns";
+import { LocalStorage, SessionStorage } from "storagens";
 
 // 不带命名空间的localStorage
 const localStorage = new LocalStorage();

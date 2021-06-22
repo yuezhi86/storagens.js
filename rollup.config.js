@@ -1,11 +1,12 @@
 import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
+import dts from "rollup-plugin-dts";
 
-const config = {
+let config = {
   input: "main.ts",
   output: [
     {
-      file: "dist/index.esm.js",
+      file: "index.esm.js",
       format: "es",
     },
   ],
@@ -20,7 +21,7 @@ const config = {
 if (process.env.mode === "umd") {
   config.output = [
     {
-      file: "dist/index.umd.js",
+      file: "index.umd.js",
       format: "umd",
       name: "storagens",
       plugins: [terser()],
@@ -29,13 +30,25 @@ if (process.env.mode === "umd") {
 } else if (process.env.mode === "cjs") {
   config.output = [
     {
-      file: "dist/index.js",
+      file: "index.js",
       format: "cjs",
     },
     {
-      file: "dist/index.min.js",
+      file: "index.min.js",
       format: "cjs",
       plugins: [terser()],
+    },
+  ];
+} else {
+  config = [
+    config,
+    {
+      input: "main.ts",
+      output: {
+        file: "index.d.ts",
+        format: "es",
+      },
+      plugins: [dts()],
     },
   ];
 }

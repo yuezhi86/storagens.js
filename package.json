@@ -1,10 +1,8 @@
 {
-  "name": "storage-ns",
-  "version": "1.0.2",
+  "name": "storagens",
+  "version": "1.0.0",
   "description": "可以设置命名空间的Storage",
-  "main": "dist/index.min.js",
-  "module": "dist/index.esm.js",
-  "types": "index.d.ts",
+  "main": "index.js",
   "scripts": {
     "build": "rollup -c && yarn build:umd && yarn build:cjs",
     "build:cjs": "mode=cjs rollup -c",
@@ -23,10 +21,10 @@
       "git add"
     ]
   },
-  "homepage": "https://github.com/yuezhi86/storage-ns.js",
+  "homepage": "https://github.com/yuezhi86/storagens.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:yuezhi86/storage-ns.js"
+    "url": "git@github.com:yuezhi86/storagens.js"
   },
   "keywords": [
     "storage",
