@@ -1,3 +1,6 @@
+export type Values = {
+  [keyName: string]: any;
+};
 export type Label = string | number;
 export type StorageName = "localStorage" | "sessionStorage";
 export type DataType = {
@@ -5,15 +8,9 @@ export type DataType = {
   updateTime: number;
   expireTime: number;
 } | null;
-
-export type Values = {
-  [keyName: string]: any;
-};
-
 export type DataObject = {
   [keyName: string]: DataType;
 };
-
 export interface StorageInterface {
   apiName: StorageName;
   namespace: Label;
