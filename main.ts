@@ -8,8 +8,8 @@ import {
 } from "./types";
 
 class BaseStorage implements StorageInterface {
-  apiName: StorageName;
-  namespace: Label;
+  readonly apiName: StorageName;
+  readonly namespace: Label;
 
   constructor(apiName: StorageName, namespace: Label = "") {
     this.apiName = apiName;
@@ -103,16 +103,16 @@ class BaseStorage implements StorageInterface {
     return count;
   };
 
-  _hasKey = (key: string): boolean => {
+  protected _hasKey = (key: string): boolean => {
     const regx = this.namespace ? `^${this.namespace}\\.` : `^${key}$`;
     return new RegExp(regx).test(key);
   };
 
-  _getKeyName = (key: Label): string => {
+  protected _getKeyName = (key: Label): string => {
     return this.namespace ? `${this.namespace}.${key}` : `${key}`;
   };
 
-  _delNamespace = (key: Label): string => {
+  protected _delNamespace = (key: Label): string => {
     const keyStr = `${key}`;
     return this.namespace
       ? keyStr.replace(new RegExp(`^${this.namespace}\\.`), "")

@@ -12,8 +12,8 @@ export type DataObject = {
   [keyName: string]: DataType;
 };
 export interface StorageInterface {
-  apiName: StorageName;
-  namespace: Label;
+  readonly apiName: StorageName;
+  readonly namespace: Label;
 
   set(key: Label, value: any, expireTime?: number): void;
   all(): DataObject;

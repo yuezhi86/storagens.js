@@ -9,8 +9,8 @@ declare type DataObject = {
     [keyName: string]: DataType;
 };
 interface StorageInterface {
-    apiName: StorageName;
-    namespace: Label;
+    readonly apiName: StorageName;
+    readonly namespace: Label;
     set(key: Label, value: any, expireTime?: number): void;
     all(): DataObject;
     allValue(): any;
@@ -24,8 +24,8 @@ interface StorageInterface {
 }
 
 declare class BaseStorage implements StorageInterface {
-    apiName: StorageName;
-    namespace: Label;
+    readonly apiName: StorageName;
+    readonly namespace: Label;
     constructor(apiName: StorageName, namespace?: Label);
     set: (key: Label, value: any, expireTime?: number) => void;
     all: () => DataObject;
@@ -37,9 +37,9 @@ declare class BaseStorage implements StorageInterface {
     clear: () => void;
     expired: (key: Label) => boolean;
     clearExpired: () => number;
-    _hasKey: (key: string) => boolean;
-    _getKeyName: (key: Label) => string;
-    _delNamespace: (key: Label) => string;
+    protected _hasKey: (key: string) => boolean;
+    protected _getKeyName: (key: Label) => string;
+    protected _delNamespace: (key: Label) => string;
 }
 declare class LocalStorage extends BaseStorage {
     constructor(namespace: string);
