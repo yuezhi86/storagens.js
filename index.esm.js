@@ -22,7 +22,7 @@ class BaseStorage {
       return values;
     }, {});
   };
-  allValue = () => {
+  allValues = () => {
     const all = this.all();
     const values = {};
 

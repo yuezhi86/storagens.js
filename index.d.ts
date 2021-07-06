@@ -13,7 +13,7 @@ interface StorageInterface {
     readonly namespace: Label;
     set(key: Label, value: any, expireTime?: number): void;
     all(): DataObject;
-    allValue(): any;
+    allValues(): any;
     get(key: Label): DataType;
     getValue(key: Label): any;
     has(key: Label): boolean;
@@ -29,7 +29,7 @@ declare class BaseStorage implements StorageInterface {
     constructor(apiName: StorageName, namespace?: Label);
     set: (key: Label, value: any, expireTime?: number) => void;
     all: () => DataObject;
-    allValue: () => any;
+    allValues: () => any;
     get: (key: Label) => DataType;
     getValue: (key: Label) => any;
     has: (key: Label) => boolean;

@@ -131,7 +131,7 @@ var BaseStorage = function BaseStorage(apiName) {
     }, {});
   });
 
-  _defineProperty(this, "allValue", function () {
+  _defineProperty(this, "allValues", function () {
     var all = _this.all();
 
     var values = {};

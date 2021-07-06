@@ -39,7 +39,7 @@ class BaseStorage implements StorageInterface {
     }, {});
   };
 
-  allValue = (): any => {
+  allValues = (): any => {
     const all = this.all();
     const values: Values = {};
 

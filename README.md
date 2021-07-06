@@ -1,8 +1,6 @@
 # StorageNamespace
 
-可以设置命名空间的 Storage
-
-## 安装
+## Install
 
 ```bash
 npm install storagens
@@ -10,125 +8,113 @@ npm install storagens
 yarn add storagens
 ```
 
-## 用法
+## Using
 
-### 创建实例
+### Create instance
 
 ```js
 import { LocalStorage, SessionStorage } from "storagens";
 
-// 不带命名空间的localStorage
 const localStorage = new LocalStorage();
-
-// 带命名空间的localStorage
-const userLocalStorage = new LocalStorage("user");
-
-// 不带命名空间的sessionStorage
 const sessionStorage = new SessionStorage();
 
-// 带命名空间的sessionStorage
+// set namespace
+const userLocalStorage = new LocalStorage("user");
 const userSessionStorage = new SessionStorage("user");
 ```
 
-### 写入数据
+### Set value
 
-**JS 代码：**
+**JS Code：**
 
 ```js
-userLocalStorage.set("name", "Bean");
+userLocalStorage.set("name", "Bean"); // => void
 // user.name: "{\"value\":\"Bean\",\"updateTime\":1623985976434,\"expireTime\":0}"
-// expireTime 默认：0
+// expireTime default：0
 ```
 
-### 设置过期时间（Timestamp）
+### Set value and set expireTime
 
-**JS 代码：**
+**JS Code：**
 
 ```js
 userLocalStorage.set(
   "token",
   "A8515509F42D80553AE2495DCDBFE9A7",
   Date.now() + 864e5
-);
+); // => void
 // user.token: "{\"value\":\"A8515509F42D80553AE2495DCDBFE9A7\",\"updateTime\":1623986348117,\"expireTime\":1624072748116}"
 ```
 
-### 读取指定 key 数据
+### Get data by key
 
-**JS 代码：**
+**JS Code：**
 
 ```js
-userLocalStorage.get("name");
-// => {value: "Bean", updateTime: 1623986570960, expireTime: 0}
+userLocalStorage.get("name"); // => {value: "Bean", updateTime: 1623986570960, expireTime: 0}
 ```
 
-### 读取指定 key 的 value
+### Get value by key
 
-**JS 代码：**
+**JS Code：**
 
 ```js
-userLocalStorage.getValue("name");
-// => Bean
+userLocalStorage.getValue("name"); // => Bean
 ```
 
-### 读取全部数据
+### Get all data
 
-**JS 代码：**
+**JS Code：**
 
 ```js
-userLocalStorage.all();
-// => {name: {value: "Bean", updateTime: 1623987036202, expireTime: 0}, token: {value: "A8515509F42D80553AE2495DCDBFE9A7", updateTime: 1623987036203, expireTime: 1624073436202}}
+userLocalStorage.all(); // => {name: {value: "Bean", updateTime: 1623987036202, expireTime: 0}, token: {value: "A8515509F42D80553AE2495DCDBFE9A7", updateTime: 1623987036203, expireTime: 1624073436202}}
 ```
 
-### 读取全部 value 数据
+### Get all values
 
-**JS 代码：**
+**JS Code：**
 
 ```js
-userLocalStorage.allValue();
-// => {name: "Bean", token: "A8515509F42D80553AE2495DCDBFE9A7"}
+userLocalStorage.allValues(); // => {name: "Bean", token: "A8515509F42D80553AE2495DCDBFE9A7"}
 ```
 
-### 查看指定 key 是否存在
+### Check if the key exists in the storage
 
-**JS 代码：**
+**JS Code：**
 
 ```js
-userLocalStorage.has("name");
-// => true
-userLocalStorage.has("age");
-// => false
+userLocalStorage.has("name"); // => true
+userLocalStorage.has("age"); // => false
 ```
 
-### 查看指定 key 是否过期
+### Check if the key has expired
 
-**JS 代码：**
+**JS Code：**
 
 ```js
-userLocalStorage.expired("token");
+userLocalStorage.expired("token"); // => boolean
 ```
 
-### 清空所有过期数据
+### Clear all expired data
 
-**JS 代码：**
+**JS Code：**
 
 ```js
-userLocalStorage.clearExpired();
-// => 0
+userLocalStorage.clearExpired(); // => number
 ```
 
-### 删除指定 key 及 value
+### Delete one data by key
 
-**JS 代码：**
+**JS Code：**
 
 ```js
-userLocalStorage.delete("name");
+userLocalStorage.delete("name"); // => void
 ```
 
-### 清空全部数据（只清空改命名空间下的数据）
+### Clear all data
 
-**JS 代码：**
+**JS Code：**
 
 ```js
-userLocalStorage.clear();
+userLocalStorage.clear(); // => void
 ```

@@ -17,7 +17,7 @@ export interface StorageInterface {
 
   set(key: Label, value: any, expireTime?: number): void;
   all(): DataObject;
-  allValue(): any;
+  allValues(): any;
   get(key: Label): DataType;
   getValue(key: Label): any;
   has(key: Label): boolean;

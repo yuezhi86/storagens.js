@@ -20,7 +20,7 @@ describe("LocalStorage Test", () => {
     expect(localStorage.has("name")).toBe(true);
     expect(testLocalStorage.getValue("name")).toBe("Bean");
     expect(testLocalStorage.get("name")).toMatchObject({ value: "Bean" });
-    expect(testLocalStorage.allValue()).toMatchObject({ name: "Bean" });
+    expect(testLocalStorage.allValues()).toMatchObject({ name: "Bean" });
     expect(testLocalStorage.all()).toMatchObject({ name: { value: "Bean" } });
     expect(localStorage.all()).toMatchObject({
       "testLocalStorage.name": { value: "Bean" },
