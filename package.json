@@ -3,6 +3,8 @@
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
+  "module": "index.esm.js",
+  "sideEffects": false,
   "scripts": {
     "build": "rollup -c && yarn build:umd && yarn build:cjs",
     "build:cjs": "mode=cjs rollup -c",
