@@ -1,6 +1,6 @@
 {
   "name": "storagens",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "module": "index.esm.js",
@@ -55,6 +55,7 @@
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.0",
     "rollup": "^2.51.1",
+    "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.3.2"
   },
