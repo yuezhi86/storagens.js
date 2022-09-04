@@ -121,13 +121,13 @@ class BaseStorage implements StorageInterface {
 }
 
 export class LocalStorage extends BaseStorage {
-  constructor(namespace: string) {
+  constructor(namespace?: string) {
     super("localStorage", namespace);
   }
 }
 
 export class SessionStorage extends BaseStorage {
-  constructor(namespace: string) {
+  constructor(namespace?: string) {
     super("sessionStorage", namespace);
   }
 }
