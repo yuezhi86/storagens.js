@@ -1,6 +1,6 @@
 {
   "name": "storagens",
-  "version": "1.0.3",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "module": "index.esm.js",

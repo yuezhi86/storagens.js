@@ -42,10 +42,10 @@ declare class BaseStorage implements StorageInterface {
     protected _delNamespace: (key: Label) => string;
 }
 declare class LocalStorage extends BaseStorage {
-    constructor(namespace?: string);
+    constructor(namespace: string);
 }
 declare class SessionStorage extends BaseStorage {
-    constructor(namespace?: string);
+    constructor(namespace: string);
 }
 
 export { LocalStorage, SessionStorage };
