@@ -3,7 +3,6 @@ class BaseStorage {
     this.apiName = apiName;
     this.namespace = namespace;
   }
-
   set = (key, value, expireTime = 0) => {
     window[this.apiName].setItem(this._getKeyName(key), JSON.stringify({
       value,
@@ -18,23 +17,19 @@ class BaseStorage {
       if (this._hasKey(key)) {
         values[this._delNamespace(key)] = JSON.parse(storageData[key]);
       }
-
       return values;
     }, {});
   };
   allValues = () => {
     const all = this.all();
     const values = {};
-
     for (let key in all) {
       if (!Object.prototype.hasOwnProperty.call(all, key)) continue;
       const item = all[key];
-
       if (item !== null) {
         values[this._delNamespace(key)] = item.value;
       }
     }
-
     return values;
   };
   get = key => JSON.parse(window[this.apiName].getItem(this._getKeyName(key)));
@@ -60,17 +55,14 @@ class BaseStorage {
   clearExpired = () => {
     let count = 0;
     const all = this.all();
-
     for (let key in all) {
       if (!Object.prototype.hasOwnProperty.call(all, key)) continue;
       const item = all[key];
-
       if (item !== null && item.expireTime > 0 && Date.now() > item.expireTime) {
         count++;
         this.delete(key);
       }
     }
-
     return count;
   };
   _hasKey = key => {
@@ -85,18 +77,15 @@ class BaseStorage {
     return this.namespace ? keyStr.replace(new RegExp(`^${this.namespace}\\.`), "") : keyStr;
   };
 }
-
 class LocalStorage extends BaseStorage {
   constructor(namespace) {
     super("localStorage", namespace);
   }
-
 }
 class SessionStorage extends BaseStorage {
   constructor(namespace) {
     super("sessionStorage", namespace);
   }
-
 }
 
 export { LocalStorage, SessionStorage };
