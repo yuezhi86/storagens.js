@@ -1,6 +1,6 @@
-# StorageNamespace
+# StorageNS（可以设置命名空间的 Storage）
 
-## Install
+## 安装
 
 ```bash
 npm install storagens
@@ -8,9 +8,9 @@ npm install storagens
 yarn add storagens
 ```
 
-## Using
+## 使用
 
-### Create instance
+### 创建实例
 
 ```js
 import { LocalStorage, SessionStorage } from "storagens";
@@ -18,12 +18,12 @@ import { LocalStorage, SessionStorage } from "storagens";
 const localStorage = new LocalStorage();
 const sessionStorage = new SessionStorage();
 
-// set namespace
+// 设置命名空间
 const userLocalStorage = new LocalStorage("user");
 const userSessionStorage = new SessionStorage("user");
 ```
 
-### Set value
+### 保存数据
 
 ```js
 userLocalStorage.set("name", "Bean"); // => void
@@ -31,7 +31,7 @@ userLocalStorage.set("name", "Bean"); // => void
 // expireTime default：0
 ```
 
-### Set value and set expireTime
+### 保存数据并设置过期时间
 
 ```js
 userLocalStorage.set(
@@ -42,56 +42,56 @@ userLocalStorage.set(
 // user.token: "{\"value\":\"A8515509F42D80553AE2495DCDBFE9A7\",\"updateTime\":1623986348117,\"expireTime\":1624072748116}"
 ```
 
-### Get data by key
+### 通过数据名称读取包装数据
 
 ```js
 userLocalStorage.get("name"); // => {value: "Bean", updateTime: 1623986570960, expireTime: 0}
 ```
 
-### Get value by key
+### 通过数据名称读取原始数据
 
 ```js
 userLocalStorage.getValue("name"); // => Bean
 ```
 
-### Get all data
+### 读取全部包装数据
 
 ```js
 userLocalStorage.all(); // => {name: {value: "Bean", updateTime: 1623987036202, expireTime: 0}, token: {value: "A8515509F42D80553AE2495DCDBFE9A7", updateTime: 1623987036203, expireTime: 1624073436202}}
 ```
 
-### Get all values
+### 读取全部原始数据
 
 ```js
 userLocalStorage.allValues(); // => {name: "Bean", token: "A8515509F42D80553AE2495DCDBFE9A7"}
 ```
 
-### Check if the key exists in the storage
+### 通过数据名称检查数据是否存在
 
 ```js
 userLocalStorage.has("name"); // => true
 userLocalStorage.has("age"); // => false
 ```
 
-### Check if the key has expired
+### 通过数据名称检查数据是否已过期
 
 ```js
 userLocalStorage.expired("token"); // => boolean
 ```
 
-### Clear all expired data
+### 清除全部已过期数据
 
 ```js
 userLocalStorage.clearExpired(); // => number
 ```
 
-### Delete one data by key
+### 通过数据名称删除数据
 
 ```js
 userLocalStorage.delete("name"); // => void
 ```
 
-### Clear all data
+### 清空全部数据（只会清空属于该命名空间的数据）
 
 ```js
 userLocalStorage.clear(); // => void
