@@ -32,9 +32,18 @@ class BaseStorage {
     }
     return values;
   };
-  get = key => JSON.parse(window[this.apiName].getItem(this._getKeyName(key)));
-  getValue = key => {
-    const value = this.get(key);
+  get = (key, includeExpired = true) => {
+    const value = JSON.parse(window[this.apiName].getItem(this._getKeyName(key)));
+    if (value === null) return null;
+    const isExpired = value.expireTime > 0 && Date.now() > value.expireTime;
+    if (!includeExpired && isExpired) {
+      this.delete(key);
+      return null;
+    }
+    return value;
+  };
+  getValue = (key, includeExpired = true) => {
+    const value = this.get(key, includeExpired);
     if (value === null) return null;
     return value.value;
   };
@@ -48,9 +57,8 @@ class BaseStorage {
     });
   };
   expired = key => {
-    const value = this.get(key);
-    if (value === null) return false;
-    return value.expireTime > 0 && Date.now() > value.expireTime;
+    const value = this.get(key, false);
+    return value === null;
   };
   clearExpired = () => {
     let count = 0;

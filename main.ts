@@ -1,4 +1,4 @@
-import {
+import type {
   DataObject,
   DataType,
   Label,
@@ -55,11 +55,24 @@ class BaseStorage implements StorageInterface {
     return values;
   };
 
-  get = (key: Label): DataType =>
-    JSON.parse(window[this.apiName].getItem(this._getKeyName(key)) as string);
+  get = (key: Label, includeExpired = true): DataType => {
+    const value = JSON.parse(
+      window[this.apiName].getItem(this._getKeyName(key)) as string
+    );
 
-  getValue = (key: Label): any => {
-    const value = this.get(key);
+    if (value === null) return null;
+
+    const isExpired = value.expireTime > 0 && Date.now() > value.expireTime;
+    if (!includeExpired && isExpired) {
+      this.delete(key);
+      return null;
+    }
+
+    return value;
+  };
+
+  getValue = (key: Label, includeExpired = true): any => {
+    const value = this.get(key, includeExpired);
     if (value === null) return null;
     return value.value;
   };
@@ -77,9 +90,8 @@ class BaseStorage implements StorageInterface {
   };
 
   expired = (key: Label): boolean => {
-    const value = this.get(key);
-    if (value === null) return false;
-    return value.expireTime > 0 && Date.now() > value.expireTime;
+    const value = this.get(key, false);
+    return value === null;
   };
 
   clearExpired = (): number => {

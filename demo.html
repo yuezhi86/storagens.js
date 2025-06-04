@@ -8,7 +8,7 @@
     <script src="index.umd.js"></script>
     <script>
       const { LocalStorage, SessionStorage } = storagens;
-      const userLocalStorage = new LocalStorage("user");
+      const userLocalStorage = window.userLocalStorage = new LocalStorage("user");
 
       console.log("userLocalStorage.set('name', 'Bean') ok!");
       userLocalStorage.set("name", "Bean");

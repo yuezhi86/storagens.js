@@ -116,10 +116,19 @@ var BaseStorage = /*#__PURE__*/_createClass(function BaseStorage(apiName) {
     return values;
   });
   _defineProperty(this, "get", function (key) {
-    return JSON.parse(window[_this.apiName].getItem(_this._getKeyName(key)));
+    var includeExpired = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    var value = JSON.parse(window[_this.apiName].getItem(_this._getKeyName(key)));
+    if (value === null) return null;
+    var isExpired = value.expireTime > 0 && Date.now() > value.expireTime;
+    if (!includeExpired && isExpired) {
+      _this.delete(key);
+      return null;
+    }
+    return value;
   });
   _defineProperty(this, "getValue", function (key) {
-    var value = _this.get(key);
+    var includeExpired = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    var value = _this.get(key, includeExpired);
     if (value === null) return null;
     return value.value;
   });
@@ -135,9 +144,8 @@ var BaseStorage = /*#__PURE__*/_createClass(function BaseStorage(apiName) {
     });
   });
   _defineProperty(this, "expired", function (key) {
-    var value = _this.get(key);
-    if (value === null) return false;
-    return value.expireTime > 0 && Date.now() > value.expireTime;
+    var value = _this.get(key, false);
+    return value === null;
   });
   _defineProperty(this, "clearExpired", function () {
     var count = 0;
