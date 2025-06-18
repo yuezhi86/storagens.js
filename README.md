@@ -58,12 +58,14 @@ userLocalStorage.getValue("name"); // => Bean
 
 ```js
 userLocalStorage.all(); // => {name: {value: "Bean", updateTime: 1623987036202, expireTime: 0}, token: {value: "A8515509F42D80553AE2495DCDBFE9A7", updateTime: 1623987036203, expireTime: 1624073436202}}
+userLocalStorage.getAll(); // 也可以使用 getAll()
 ```
 
 ### 读取全部原始数据
 
 ```js
 userLocalStorage.allValues(); // => {name: "Bean", token: "A8515509F42D80553AE2495DCDBFE9A7"}
+userLocalStorage.values(); // 也可以使用 values()
 ```
 
 ### 通过数据名称检查数据是否存在

@@ -103,8 +103,9 @@ var BaseStorage = /*#__PURE__*/_createClass(function BaseStorage(apiName) {
       return values;
     }, {});
   });
+  _defineProperty(this, "getAll", this.all);
   _defineProperty(this, "allValues", function () {
-    var all = _this.all();
+    var all = _this.getAll();
     var values = {};
     for (var key in all) {
       if (!Object.prototype.hasOwnProperty.call(all, key)) continue;
@@ -115,6 +116,7 @@ var BaseStorage = /*#__PURE__*/_createClass(function BaseStorage(apiName) {
     }
     return values;
   });
+  _defineProperty(this, "values", this.allValues);
   _defineProperty(this, "get", function (key) {
     var includeExpired = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
     var value = JSON.parse(window[_this.apiName].getItem(_this._getKeyName(key)));

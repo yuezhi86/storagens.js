@@ -1,3 +1,6 @@
+type Values = {
+    [keyName: string]: any;
+};
 type Label = string | number;
 type StorageName = "localStorage" | "sessionStorage";
 type DataType = {
@@ -29,7 +32,9 @@ declare class BaseStorage implements StorageInterface {
     constructor(apiName: StorageName, namespace?: Label);
     set: (key: Label, value: any, expireTime?: number) => void;
     all: () => DataObject;
-    allValues: () => any;
+    getAll: () => DataObject;
+    allValues: () => Values;
+    values: () => Values;
     get: (key: Label, includeExpired?: boolean) => DataType;
     getValue: (key: Label, includeExpired?: boolean) => any;
     has: (key: Label) => boolean;

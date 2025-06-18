@@ -38,9 +38,10 @@ class BaseStorage implements StorageInterface {
       return values;
     }, {});
   };
+  getAll = this.all;
 
-  allValues = (): any => {
-    const all = this.all();
+  allValues = (): Values => {
+    const all = this.getAll();
     const values: Values = {};
 
     for (let key in all) {
@@ -54,6 +55,7 @@ class BaseStorage implements StorageInterface {
 
     return values;
   };
+  values = this.allValues;
 
   get = (key: Label, includeExpired = true): DataType => {
     const value = JSON.parse(

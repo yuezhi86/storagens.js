@@ -20,8 +20,9 @@ class BaseStorage {
       return values;
     }, {});
   };
+  getAll = this.all;
   allValues = () => {
-    const all = this.all();
+    const all = this.getAll();
     const values = {};
     for (let key in all) {
       if (!Object.prototype.hasOwnProperty.call(all, key)) continue;
@@ -32,6 +33,7 @@ class BaseStorage {
     }
     return values;
   };
+  values = this.allValues;
   get = (key, includeExpired = true) => {
     const value = JSON.parse(window[this.apiName].getItem(this._getKeyName(key)));
     if (value === null) return null;
